@@ -1,0 +1,8 @@
+package com.portfolio.microservicios.app.examenes.model.entity;
+
+import jakarta.persistence.Entity;
+
+@Entity
+public class Examen {
+
+}

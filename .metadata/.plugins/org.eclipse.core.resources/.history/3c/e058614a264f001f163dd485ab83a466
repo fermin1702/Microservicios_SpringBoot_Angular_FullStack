@@ -1,0 +1,12 @@
+package com.portfolio.microservicios.app.examenes.services;
+
+import org.springframework.stereotype.Service;
+
+import com.portfolio.microservicios.app.examenes.model.entity.Examen;
+import com.portfolio.microservicios.app.examenes.models.repository.ExamenRepository;
+import com.portfolio.microservicios.commons.services.CommonServiceImpl;
+
+@Service
+public class ExamenServiceImpl extends CommonServiceImpl<Examen, ExamenRepository> implements ExamenService {
+
+}

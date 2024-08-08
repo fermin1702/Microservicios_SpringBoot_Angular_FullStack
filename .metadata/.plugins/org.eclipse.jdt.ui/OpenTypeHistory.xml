@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<typeInfoHistroy>
+    <typeInfo handle="=microservicios-usuarios/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.portfolio.microservicios.app.usuarios.services{AlumnoService.java[AlumnoService" modifiers="513" timestamp="1718782382777"/>
+    <typeInfo handle="=commons-microservicios/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.portfolio.microservicios.commons.services{CommonService.java[CommonService" modifiers="513" timestamp="1718613898150"/>
+    <typeInfo handle="=microservicios-cursos/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.portfolio.microservicios.app.cursos.services{CursoService.java[CursoService" modifiers="513" timestamp="1722346991004"/>
+    <typeInfo handle="=commons-microservicios/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.portfolio.microservicios.commons.services{CommonServiceImpl.java[CommonServiceImpl" modifiers="1" timestamp="1718614234892"/>
+    <typeInfo handle="=microservicios-examenes/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.portfolio.microservicios.app.examenes.services{ExamenService.java[ExamenService" modifiers="513" timestamp="1722421134679"/>
+</typeInfoHistroy>

@@ -1,0 +1,5 @@
+package com.portfolio.microservicios.app.examenes.services;
+
+public interface ExamenService extends{
+
+}

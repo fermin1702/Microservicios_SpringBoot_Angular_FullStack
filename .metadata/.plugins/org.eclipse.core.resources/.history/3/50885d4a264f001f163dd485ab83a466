@@ -1,0 +1,8 @@
+package com.portfolio.microservicios.app.examenes.services;
+
+import com.portfolio.microservicios.app.examenes.model.entity.Examen;
+import com.portfolio.microservicios.commons.services.CommonService;
+
+public interface ExamenService extends CommonService<Examen> {
+
+}
