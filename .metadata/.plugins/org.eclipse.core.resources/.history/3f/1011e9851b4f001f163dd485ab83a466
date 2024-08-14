@@ -1,5 +1,0 @@
-package com.portfolio.microservicios.app.examenes.model.entity;
-
-public class Pregunta {
-
-}

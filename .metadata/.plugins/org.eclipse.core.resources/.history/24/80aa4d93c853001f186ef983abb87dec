@@ -1,5 +1,0 @@
-package com.portfolio.microservicios.app.respuestas.models.entity;
-
-public class Respuesta {
-
-}
