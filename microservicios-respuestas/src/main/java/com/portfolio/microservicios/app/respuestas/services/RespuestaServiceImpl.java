@@ -1,17 +1,15 @@
 package com.portfolio.microservicios.app.respuestas.services;
 
-import java.util.Collections;
+//import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.portfolio.microservicios.app.respuestas.clients.ExamenFeignClient;
+//import com.portfolio.microservicios.app.respuestas.clients.ExamenFeignClient;
 import com.portfolio.microservicios.app.respuestas.models.entity.Respuesta;
 import com.portfolio.microservicios.app.respuestas.models.repository.RespuestaRepository;
-import com.portfolio.microservicios.commons.examenes.models.entity.Examen;
-import com.portfolio.microservicios.commons.examenes.models.entity.Pregunta;
 
 @Service
 public class RespuestaServiceImpl implements RespuestaService {
@@ -19,8 +17,8 @@ public class RespuestaServiceImpl implements RespuestaService {
 	@Autowired
 	private RespuestaRepository repository;
 
-	@Autowired
-	private ExamenFeignClient examenClient;
+	// @Autowired
+	// private ExamenFeignClient examenClient;
 
 	@Override
 	public Iterable<Respuesta> saveAll(Iterable<Respuesta> respuestas) {
@@ -29,33 +27,40 @@ public class RespuestaServiceImpl implements RespuestaService {
 
 	@Override
 	public Iterable<Respuesta> findRespuestaByAlumnoByExame(Long alumnoId, Long examenId) {
-		Examen examen = examenClient.obtenerExamenPorId(examenId);
-		List<Pregunta> preguntas = examen.getPreguntas();
-		List<Long> preguntaIds = preguntas.stream().map(p -> p.getId()).collect(Collectors.toList());
-		List<Respuesta> respuestas = (List<Respuesta>) repository.findRespuestaByAlumnoByPreguntaIds(alumnoId,
-				preguntaIds);
-		respuestas = respuestas.stream().map(r -> {
-			preguntas.forEach(p -> {
-				if (p.getId() == r.getPreguntaId()) {
-					r.setPregunta(p);
-				}
-			});
-			return r;
-		}).collect(Collectors.toList());
+
+		/*
+		 * Examen examen = examenClient.obtenerExamenPorId(examenId); List<Pregunta>
+		 * preguntas = examen.getPreguntas(); List<Long> preguntaIds =
+		 * preguntas.stream().map(p -> p.getId()).collect(Collectors.toList());
+		 * List<Respuesta> respuestas = (List<Respuesta>)
+		 * repository.findRespuestaByAlumnoByPreguntaIds(alumnoId, preguntaIds);
+		 * respuestas = respuestas.stream().map(r -> { preguntas.forEach(p -> { if
+		 * (p.getId() == r.getPreguntaId()) { r.setPregunta(p); } }); return r;
+		 * }).collect(Collectors.toList());
+		 */
+
+		List<Respuesta> respuestas = (List<Respuesta>) repository.findRespuestaByAlumnoByExamen(alumnoId, examenId);
 
 		return respuestas;
 	}
 
 	@Override
 	public Iterable<Long> findExamenesIdsConRespuestasByAlumno(Long alumnoId) {
-		List<Respuesta> respuestasAlumno = (List<Respuesta>) repository.findByAlumnoId(alumnoId);
-		List<Long> examenIds = Collections.emptyList();
 
-		if (respuestasAlumno.size() > 0) {
-			List<Long> preguntaIds = respuestasAlumno.stream().map(r -> r.getPreguntaId()).collect(Collectors.toList());
-			examenIds = examenClient.obtenerExamenesIdsPorPreguntasIdRespondidas(preguntaIds);
-		}
+		/*
+		 * List<Respuesta> respuestasAlumno = (List<Respuesta>)
+		 * repository.findByAlumnoId(alumnoId); List<Long> examenIds =
+		 * Collections.emptyList();
+		 * 
+		 * if (respuestasAlumno.size() > 0) { List<Long> preguntaIds =
+		 * respuestasAlumno.stream().map(r ->
+		 * r.getPreguntaId()).collect(Collectors.toList()); examenIds =
+		 * examenClient.obtenerExamenesIdsPorPreguntasIdRespondidas(preguntaIds); }
+		 */
 
+		List<Respuesta> respuestasAlumno = (List<Respuesta>) repository.findExamenesIdsConRespuestasByAlumno(alumnoId);
+		List<Long> examenIds = respuestasAlumno.stream().map(r -> r.getPregunta().getExamen().getId()).distinct()
+				.collect(Collectors.toList());
 		return examenIds;
 	}
 
